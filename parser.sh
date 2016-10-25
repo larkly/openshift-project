@@ -2,6 +2,7 @@
 
 if [ $# -ne 1 ]; then
   echo "Usage: $(basename $0) <list-uri>" 1>&2
+  sleep 5000
   exit 1
 fi
 
