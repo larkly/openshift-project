@@ -19,19 +19,20 @@ fi
 cont=()
 for v in $(sed -e 's/^.*Youtube", "id": "//g' -e 's/", "title.*$//g' < $file); do
   #echo "https://www.youtube.com/watch?v=$v"
-  oc new-app https://github.com/larkly/openshoft-project.git --param=YOUTUBE="https://www.youtube.com/watch?v=$v" --name=$v
-  cont+=($v)
+  contname=$(echo $v | tr '[:upper:]' '[:lower:]')
+  oc new-app https://github.com/larkly/openshoft-project.git -e YOUTUBE="https://www.youtube.com/watch?v=$v" --name=$contname
+  cont+=($contname)
 done
 
 mkdir -p $output
 while true; do
   working=()
   for c in ${cont[@]}; do
-    oc exec $c -it test -f /ready
+    oc exec $c -it test -f /tmp/ready
     if [ $? -ne 0 ]; then
       name=$(oc exec $c -it "ls /\*mp3" | tr -d '/')
       oc exec $c -it cat $name > $output/$name
-      oc exec $c -it rm -f /ready
+      oc exec $c -it rm -f /tmp/ready
     else
       working+=($c)
     fi

@@ -2,13 +2,13 @@
 
 echo $YOUTUBE
 
-cd /
+cd /tmp
 
-youtube-dl --audio-format mp3 -x $YOUTUBE
-touch /ready
+youtube-dl --audio-format mp3 -x "$YOUTUBE"
+touch /tmp/ready
 
 while true;
 do
   sleep 1
-  [[ ! -f /ready ]] && exit 0
+  [[ ! -f /tmp/ready ]] && exit 0
 done
