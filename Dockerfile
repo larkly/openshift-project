@@ -1,5 +1,6 @@
-FROM ubuntu:trusty
+FROM centos:7
 
-RUN apt-get update -y && apt-get install -y python python-pip && pip install youtube-dl
+RUN yum install -y python python-setuptools && easy_install youtube-dl
+ADD parser.sh /
 
-CMD ./parser.sh
+CMD /bin/bash /parser.sh
