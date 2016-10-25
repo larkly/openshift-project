@@ -1,6 +1,6 @@
 FROM centos:7
 
 RUN yum install -y python python-setuptools && easy_install youtube-dl
-ADD parser.sh /
+ADD download.sh /
 
-CMD /bin/bash /parser.sh
+CMD /bin/bash /download.sh
