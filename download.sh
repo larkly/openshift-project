@@ -2,6 +2,8 @@
 
 echo $YOUTUBE
 
+HOME=/tmp
+
 cd /tmp
 
 youtube-dl --audio-format mp3 -x "$YOUTUBE"
