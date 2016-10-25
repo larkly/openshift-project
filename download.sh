@@ -6,6 +6,9 @@ HOME=/tmp
 
 cd /tmp
 
+mv /tmp/ffmpeg*/ffmpeg /tmp
+PATH=$PATH:/tmp
+
 youtube-dl --audio-format mp3 -x "$YOUTUBE"
 touch /tmp/ready
 
