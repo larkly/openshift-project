@@ -20,7 +20,7 @@ cont=()
 for v in $(sed -e 's/^.*Youtube", "id": "//g' -e 's/", "title.*$//g' < $file); do
   #echo "https://www.youtube.com/watch?v=$v"
   contname=$(echo $v | tr '[:upper:]' '[:lower:]')
-  oc new-app https://github.com/larkly/openshoft-project.git -e YOUTUBE="https://www.youtube.com/watch?v=$v" --name=$contname
+  oc new-app https://github.com/larkly/openshift-project.git -e YOUTUBE="https://www.youtube.com/watch?v=$v" --name=$contname
   cont+=($contname)
 done
 
